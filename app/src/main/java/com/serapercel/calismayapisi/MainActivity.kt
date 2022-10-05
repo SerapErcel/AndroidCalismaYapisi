@@ -1,5 +1,6 @@
 package com.serapercel.calismayapisi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +21,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(tasarim.root)
 
         tasarim.butonBasla.setOnClickListener {
-            Snackbar.make(it, "Merhaba", Snackbar.LENGTH_SHORT).show()
+            // Snackbar.make(it, "Merhaba", Snackbar.LENGTH_SHORT).show()
+
+            // sayfa gecisi icin intent oluşturma ve activity baslatilmasi
+            val intent = Intent(this@MainActivity, OyunEkraniActivity::class.java)
+
+            // Activityler arasi veri tasima
+            intent.putExtra("ad", "Ahmet")
+            intent.putExtra("yas", 23)
+            intent.putExtra("boy", 1.78)
+            intent.putExtra("bekar", true)
+
+            // Activityler arasi nesne tasima
+            val kisi = Kisiler("Mehmet", 34, 1.97, false)
+            intent.putExtra("nesne",kisi)
+
+            startActivity(intent)
+
         }
 
         Log.e("Yasam Dongusu", "onCreate Calisti")
